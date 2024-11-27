@@ -1,0 +1,9 @@
+- name: Add ansible control node to /etc/hosts
+  ansible.builtin.lineinefile:
+    path: /etc/hosts
+    search_string: 'home.stuffserver.net'
+    line: '{{ control_node_ip }} home.stuffserver.net'
+    owner: root
+    group: root
+    mode: '0644'
+

@@ -1,0 +1,13 @@
+- name: Install ansible 
+  ansible.builtin.package:
+    name: ansible
+    state: present
+
+- name: Install git
+  ansible.builtin.package:
+    name: ansible
+    state: present
+
+- name: Install ansible-freeipa
+  ansible.builtin.package:
+    name: ansible-freeipa

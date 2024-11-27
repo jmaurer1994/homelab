@@ -1,0 +1,14 @@
+- name: Update control node
+  hosts: control
+  remote_user: root
+  tasks:
+    - name: Import control role
+      import_role: 
+        name: control
+
+- name: Update ipaserver node
+  hosts: ipaserver
+  remote_user: root
+  roles:
+  - role: ipaserver
+    state: present

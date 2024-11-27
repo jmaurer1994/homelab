@@ -1,0 +1,8 @@
+---
+- name: Update ipaserver node
+  hosts: ipaserver
+  remote_user: root
+  roles:
+  - role: ipaserver
+    state: present
+...
