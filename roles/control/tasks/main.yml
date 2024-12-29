@@ -1,13 +1,40 @@
-- name: Install ansible 
+- name: Sync dependencies
   ansible.builtin.package:
+    name: git,ansible,ansible-freeipa,python3,python3-libdnf5
+    state: latest
+
+- name: Create local ansible user
+  ansible.builtin.user:
     name: ansible
+    shell: /bin/bash
+    create_home: yes
+    generate_ssh_key: true
+    ssh_key_type: ed25519
     state: present
 
-- name: Install git
-  ansible.builtin.package:
-    name: ansible
+- name: Provide workstation ssh access
+  ansible.posix.authorized_key:
+    user: ansible
     state: present
+    key: "{{ lookup('file','/home/joe/.ssh/id_ed25519.pub') }}"
 
-- name: Install ansible-freeipa
-  ansible.builtin.package:
-    name: ansible-freeipa
+- name: Read SSH public key to authorize
+  ansible.builtin.shell: cat /home/ansible/.ssh/id_ed25519.pub
+  register: ssh_pub_key
+
+- name: Authorize key with Github
+  local_action:
+      module: github_key
+      name: 'control node'
+      token: "{{ github_access_token }}"
+      pubkey: "{{ ssh_pub_key.stdout }}"
+
+- name: Retrieve source repo
+  become: true
+  become_user: 'ansible'
+  ansible.builtin.git:
+    repo: git@github.com:jmaurer1994/homelab.git
+    accept_newhostkey: true
+    dest: /home/ansible/homelab
+    clone: yes
+    update: yes

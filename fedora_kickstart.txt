@@ -1,0 +1,44 @@
+#version=DEVEL
+# System authorization information
+auth --enableshadow --passalgo=sha512
+
+# Use graphical installation
+graphical
+
+# Install Workstation group
+%packages
+@workstation-product-environment
+%end
+
+# Use the entire drive
+ignoredisk --only-use=sda
+clearpart --all --initlabel
+autopart --type=plain --nohome
+
+# Set the hostname
+network --hostname=workstation.home.stuffserver.net
+
+# Configure network settings
+network --bootproto=dhcp --device=ens33 --activate
+
+# Root password
+rootpw --iscrypted $6$abcdef1234567890$xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# User creation
+user --name=localuser --password=$6$abcdef1234567890$xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --groups=wheel --gecos="Local User"
+
+# System services
+services --enabled="sshd,chronyd"
+
+# Timezone
+timezone --utc America/New_York
+
+# Bootloader configuration
+bootloader --location=mbr --timeout=5 --append="rhgb quiet"
+
+# Domain join (adjust settings for your environment)
+realm join --user=administrator home.stuffserver.net
+
+# Reboot after installation
+reboot
+
