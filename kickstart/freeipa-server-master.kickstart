@@ -9,7 +9,6 @@ network --bootproto=static --ip=10.73.200.11 --netmask=255.255.252.0 --gateway=1
 # System bootloader configuration
 bootloader --location=mbr --timeout=5 --append="rhgb quiet"
 
-defaults
 keyboard us
 lang en_US.UTF-8
 skipx
