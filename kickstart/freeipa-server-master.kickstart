@@ -35,6 +35,7 @@ timezone America/New_York --utc
 @core
 chrony
 ipa-server-dns
+qemu-guest-agent
 %end
 
 # Post-installation configuration
