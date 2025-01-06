@@ -4,7 +4,7 @@
 auth --enableshadow --passalgo=sha512
 
 # Network configuration
-network --bootproto=static --ip=10.73.200.11 --netmask=255.255.252.0 --gateway=10.73.200.1 --nameserver=10.73.200.8 --hostname=dc-01.home.stuffserver.net
+network --bootproto=static --ip=10.73.200.11 --netmask=255.255.252.0 --gateway=10.73.200.1 --nameserver=10.73.200.8,10.73.200.9 --hostname=dc-01.home.stuffserver.net
 
 # System bootloader configuration
 bootloader --location=mbr --timeout=5 --append="rhgb quiet"
@@ -22,8 +22,7 @@ firewall --enabled --service=ssh
 selinux --enforcing
 
 # Root password
-rootpw --iscrypted grub.pbkdf2.sha512.10000.E9FA1619F799998157E538158DF14B15600B0E38C2E76EC9DE1195E79C4D4ACDC7EB90490B4037607CDAAEA8C1EB447DEF831AB2F10B26FE6A3586994BB4202D.3A147788B1C0412FCC53A1322B6EE86D41490632CA4EE256A09ADE6FCB338CFACA1AE9079870B22609D5B118002E49BF680472A19D1C20E109DB2AAFBF25C6B7
-
+rootpw --iscrypted $y$j9T$wjMmz7tW/jEhnbiqTMxij0$BWgGPF/SvyyVl80Nn8fKkT383ZuBVj6UAJgfNdqF1vD
 
 # Timezone
 timezone America/New_York --utc
