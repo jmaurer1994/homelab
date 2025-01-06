@@ -4,7 +4,7 @@
 auth --enableshadow --passalgo=sha512
 
 # Network configuration
-network --bootproto=static --ip=10.73.200.11 --netmask=255.255.252.0 --gateway=10.73.200.1 --nameserver=10.73.200.11 --hostname=dc-01.home.stuffserver.net
+network --bootproto=static --ip=10.73.200.11 --netmask=255.255.252.0 --gateway=10.73.200.1 --nameserver=10.73.200.8 --hostname=dc-01.home.stuffserver.net
 
 # System bootloader configuration
 bootloader --location=mbr --timeout=5 --append="rhgb quiet"
