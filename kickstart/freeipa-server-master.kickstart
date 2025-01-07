@@ -1,8 +1,5 @@
 ### Kickstart file for FreeIPA Server ###
 
-# System authorization information
-auth --enableshadow --passalgo=sha512
-
 # Network configuration
 network --bootproto=static --ip=10.73.200.11 --netmask=255.255.252.0 --gateway=10.73.200.1 --nameserver=10.73.200.8,10.73.200.9 --hostname=dc-01.home.stuffserver.net
 
@@ -49,7 +46,7 @@ ipa-server-install \
     --ip-address=10.73.200.11 \
     --setup-dns \
     --auto-reverse \
-    --no-ntp \
+    --no-ntp 
 
 # Add FreeIPA LDAP and LDAPS services to the firewall
 firewall-cmd --permanent --add-service=freeipa-ldap
