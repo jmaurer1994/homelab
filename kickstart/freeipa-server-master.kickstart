@@ -54,6 +54,7 @@ ipa-server-install \
     --no-ntp \
     --forwarder=10.73.200.8 \
     --forwarder=10.73.200.9 \
+    --netbios-name=HOME \
     --unattended
 
 # Add FreeIPA LDAP and LDAPS services to the firewall
