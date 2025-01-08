@@ -1,4 +1,4 @@
-w### Kickstart file for FreeIPA Server ###
+### Kickstart file for FreeIPA Server ###
 
 # System authorization information
 auth --enableshadow --passalgo=sha512
