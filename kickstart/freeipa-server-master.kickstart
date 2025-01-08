@@ -22,7 +22,8 @@ firewall --enabled --service=ssh
 selinux --enforcing
 
 # Root password
-rootpw --iscrypted $y$j9T$wjMmz7tW/jEhnbiqTMxij0$BWgGPF/SvyyVl80Nn8fKkT383ZuBVj6UAJgfNdqF1vD
+rootpw --iscrypted grub.pbkdf2.sha512.10000.E9FA1619F799998157E538158DF14B15600B0E38C2E76EC9DE1195E79C4D4ACDC7EB90490B4037607CDAAEA8C1EB447DEF831AB2F10B26FE6A3586994BB4202D.3A147788B1C0412FCC53A1322B6EE86D41490632CA4EE256A09ADE6FCB338CFACA1AE9079870B22609D5B118002E49BF680472A19D1C20E109DB2AAFBF25C6B7
+
 
 # Timezone
 timezone America/New_York --utc
@@ -45,14 +46,11 @@ systemctl enable chronyd
 ipa-server-install \
     --domain=home.stuffserver.net \
     --realm=HOME.STUFFSERVER.NET \
-    --ds-password=intial \
-    --admin-password=initial \
     --hostname=dc-01.home.stuffserver.net \
     --ip-address=10.73.200.11 \
     --setup-dns \
     --auto-reverse \
     --no-ntp \
-    --unattended
 
 # Add FreeIPA LDAP and LDAPS services to the firewall
 firewall-cmd --permanent --add-service=freeipa-ldap
@@ -63,4 +61,3 @@ firewall-cmd --reload
 nmcli general reload
 
 %end
-
