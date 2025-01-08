@@ -41,8 +41,8 @@ systemctl enable chronyd
 ipa-server-install \
     --domain=home.stuffserver.net \
     --realm=HOME.STUFFSERVER.NET \
-    --ds-password=intial \
-    --admin-password=initial \
+    --ds-password=initial1 \
+    --admin-password=initial1 \
     --hostname=dc-01.home.stuffserver.net \
     --ip-address=10.73.200.11 \
     --setup-dns \
