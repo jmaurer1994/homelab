@@ -48,6 +48,8 @@ ipa-server-install \
     --setup-dns \
     --auto-reverse \
     --no-ntp \
+    --forwarder=10.73.200.8\
+    --forwarder=10.73.200.9\
     --unattended
 
 # Add FreeIPA LDAP and LDAPS services to the firewall
