@@ -34,15 +34,12 @@ qemu-guest-agent
 
 # Post-installation configuration
 %post
-
-# Enable Chrony
-systemctl enable chronyd
-
-# Remove all lines containing 'localhost' from /etc/hosts
-sed -i '/localhost/d' /etc/hosts
-
+ip addr > /var/log/ip1.log
 # Restart network for hostname and IP to take effect
 nmcli general reload
+ip addr > /var/log/ip2.log
+# Enable Chrony
+systemctl enable chronyd
 
 # FreeIPA setup
 ipa-server-install \
@@ -63,6 +60,7 @@ ipa-server-install \
 firewall-cmd --permanent --add-service=freeipa-ldap
 firewall-cmd --permanent --add-service=freeipa-ldaps
 firewall-cmd --reload
+
 
 %end
 
