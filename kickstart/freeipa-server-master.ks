@@ -32,37 +32,4 @@ ipa-server-dns
 qemu-guest-agent
 %end
 
-# Post-installation configuration
-%post
-ip addr > /var/log/ip1.log
-# Restart network for hostname and IP to take effect
-nmcli general reload
-ip addr > /var/log/ip2.log
-# Enable Chrony
-systemctl enable chronyd
-
-# FreeIPA setup
-ipa-server-install \
-    --domain=home.stuffserver.net \
-    --realm=HOME.STUFFSERVER.NET \
-    --ds-password=initial1 \
-    --admin-password=initial1 \
-    --hostname=dc-01.home.stuffserver.net \
-    --ip-address=10.73.200.11 \
-    --setup-dns \
-    --auto-reverse \
-    --no-ntp \
-    --forwarder=10.73.200.8 \
-    --forwarder=10.73.200.9 \
-    --netbios-name=HOME \
-    --unattended
-
-# Add FreeIPA LDAP and LDAPS services to the firewall
-firewall-cmd --permanent --add-service=freeipa-ldap
-firewall-cmd --permanent --add-service=freeipa-ldaps
-firewall-cmd --reload
-
-
-%end
-
 reboot
