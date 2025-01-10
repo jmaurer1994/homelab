@@ -1,0 +1,29 @@
+#!ipxe
+menu iPXE Boot Menu
+item --gap -- Rocky Linux 9 Options
+item rocky9_freeipa_server freeipa server
+item rocky9_cus
+
+choose selected && goto ${selected}
+
+:rocky9_ipa_server
+set ks_url https://raw.githubusercontent.com/jmaurer1994/homelab/refs/heads/main/kickstart/freeipa-server.ks
+
+:rocky9_ipa_
+
+:rocky9_default
+kernel http://<your-server-ip>/rocky9/images/pxeboot/vmlinuz initrd=http://<your-server-ip>/rocky9/images/pxeboot/initrd.img inst.ks=http://<your-server-ip>/homelab/kickstart/default.ks
+initrd http://<your-server-ip>/rocky9/images/pxeboot/initrd.img
+boot
+
+:rocky9_custom
+kernel http://<your-server-ip>/rocky9/images/pxeboot/vmlinuz initrd=http://<your-server-ip>/rocky9/images/pxeboot/initrd.img inst.ks=http://<your-server-ip>/homelab/kickstart/custom.ks
+initrd http://<your-server-ip>/rocky9/images/pxeboot/initrd.img
+boot
+
+:shell
+echo Dropping to shell
+shell
+
+:reboot
+reboot
