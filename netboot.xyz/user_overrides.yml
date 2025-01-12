@@ -43,4 +43,4 @@ early_menu_contents: |
    ### early menu overrides
    ### used to set early ipxe options such as custom console & logo
    console --x 1024 --y 768
-   console --picture https://raw.githubusercontent.com/jmaurer1994/homelab/refs/heads/main/logo.png
+   console --picture https://raw.githubusercontent.com/jmaurer1994/homelab/refs/heads/main/bg.png
